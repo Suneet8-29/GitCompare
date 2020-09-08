@@ -11,7 +11,8 @@ const UserInput = (props) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();       
-        props.fetchUser(user);       
+        props.fetchUser(user);
+        
     }
 
     return (

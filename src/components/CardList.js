@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import _ from 'lodash'
-
+import {useLocation} from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { fetchUser } from '../action'
+
+function x(){
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return new URLSearchParams(useLocation().search);
+}
+
+
 const CardList = (props) => {
+
+    let query = x();
+
+    useEffect(() => {
+        const users = query.get('usernames');
+        if (users) {
+            const userList = users.split(',');
+            console.log(userList);
+            userList.forEach(user => {
+            props.fetchUser(user);
+        })
+        }
+        
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const renderList = (users) => {
         console.log(users)
@@ -59,6 +83,6 @@ const mapStateToProps = ({user}) => {
     return {user : _.orderBy(Object.values(user), 'followers', 'desc')}
 }
 
-export default connect(mapStateToProps)(CardList);
+export default connect(mapStateToProps, {fetchUser})(CardList);
 
 

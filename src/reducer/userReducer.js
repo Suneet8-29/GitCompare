@@ -1,7 +1,7 @@
  
 const userReducer = (state={}, action) => {
     if (action.type === 'FETCH_USER') {
-        return {...state , [action.payload.followers] : action.payload }
+        return {...state , [action.payload.id] : action.payload }
     }
     return state;
 }
