@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux'
 
 import { fetchUser } from '../action'
-
+ 
 const UserInput = (props) => {
+     
     const [user, setUser] = useState('');
     const onInputChange = (event) => {
         setUser(event.target.value);
@@ -12,8 +13,8 @@ const UserInput = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();       
         props.fetchUser(user);
-        
-    }
+         
+     }
 
     return (
         
@@ -30,7 +31,7 @@ const UserInput = (props) => {
     )
 }
 
-
+ 
 
 export default connect(null, {fetchUser})(UserInput);
  

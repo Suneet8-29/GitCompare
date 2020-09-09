@@ -1,36 +1,42 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
-import {useLocation} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchUser } from '../action'
+import {url} from '../url/dynamicUrl'
 
-function x(){
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    return new URLSearchParams(useLocation().search);
-}
 
 
 const CardList = (props) => {
 
-    let query = x();
+    let query = url();
 
     useEffect(() => {
         const users = query.get('usernames');
+        
         if (users) {
             const userList = users.split(',');
-            console.log(userList);
+            
             userList.forEach(user => {
             props.fetchUser(user);
         })
         }
         
-
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    
+
     const renderList = (users) => {
-        console.log(users)
+        
+        if (users.length > 0) {
+            const x = users.map(user => {
+                return user.login;
+            })
+             
+            window.history.pushState({}, '', `?usernames=${x.toString()}`)
+        }
         
         return users.map(user => {
             return (

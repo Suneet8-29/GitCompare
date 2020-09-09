@@ -6,11 +6,11 @@ import { BrowserRouter as Router} from 'react-router-dom'
 const App = () => {  
     return (        
         <div className='ui container'>
-            <UserInput></UserInput>
-            <h3>* Ranked based on number of followers</h3>
+           <br/>
             <Router>
-                
-                    <CardList></CardList>
+                <UserInput></UserInput>
+                <h3>* Ranked based on number of followers</h3>
+                <CardList></CardList>
                  
             </Router>
         </div>
